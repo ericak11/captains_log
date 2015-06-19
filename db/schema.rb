@@ -11,6 +11,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150619213620) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "daily_activities", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "description"
+    t.string   "date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.string   "type"
+    t.string   "category"
+    t.integer  "check_number"
+    t.string   "check_to"
+    t.string   "notes"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "logs", force: :cascade do |t|
+    t.string   "pdf"
+    t.string   "date"
+    t.string   "created_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "open_items", force: :cascade do |t|
+    t.string   "task"
+    t.string   "date"
+    t.integer  "user_id"
+    t.string   "notes"
+    t.boolean  "completed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email"
+    t.string   "name"
+    t.string   "type"
+    t.string   "password_digest"
+    t.string   "job_title"
+    t.boolean  "active"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
 end

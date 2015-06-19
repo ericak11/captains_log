@@ -27,7 +27,7 @@ gem 'prawn', '2.0.1'
 gem 'pry'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
+gem 'pg'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
