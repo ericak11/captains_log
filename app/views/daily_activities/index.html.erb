@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Daily Activities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Description</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @daily_activities.each do |daily_activity| %>
+      <tr>
+        <td><%= daily_activity.user_id %></td>
+        <td><%= daily_activity.description %></td>
+        <td><%= daily_activity.date %></td>
+        <td><%= link_to 'Show', daily_activity %></td>
+        <td><%= link_to 'Edit', edit_daily_activity_path(daily_activity) %></td>
+        <td><%= link_to 'Destroy', daily_activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Daily activity', new_daily_activity_path %>

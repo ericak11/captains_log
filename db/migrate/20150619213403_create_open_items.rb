@@ -6,7 +6,8 @@ class CreateOpenItems < ActiveRecord::Migration
       t.integer :user_id
       t.string :notes
       t.boolean :completed
-      t.timestamps
+
+      t.timestamps null: false
     end
   end
 end

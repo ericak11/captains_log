@@ -5,9 +5,9 @@ class CreateExpenses < ActiveRecord::Migration
       t.string :category
       t.integer :check_number
       t.string :check_to
-      t.integer :amount
       t.string :notes
-      t.timestamps
+
+      t.timestamps null: false
     end
   end
 end

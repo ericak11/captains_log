@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Expenses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Category</th>
+      <th>Check number</th>
+      <th>Check to</th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @expenses.each do |expense| %>
+      <tr>
+        <td><%= expense.type %></td>
+        <td><%= expense.category %></td>
+        <td><%= expense.check_number %></td>
+        <td><%= expense.check_to %></td>
+        <td><%= expense.notes %></td>
+        <td><%= link_to 'Show', expense %></td>
+        <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
+        <td><%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Expense', new_expense_path %>

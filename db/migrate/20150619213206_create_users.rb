@@ -6,8 +6,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :type
       t.string :password_digest
       t.string :job_title
-      t.boolean :active, default: true
-      t.timestamps
+      t.boolean :active
+
+      t.timestamps null: false
     end
   end
 end

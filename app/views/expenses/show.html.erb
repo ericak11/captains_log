@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @expense.type %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @expense.category %>
+</p>
+
+<p>
+  <strong>Check number:</strong>
+  <%= @expense.check_number %>
+</p>
+
+<p>
+  <strong>Check to:</strong>
+  <%= @expense.check_to %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @expense.notes %>
+</p>
+
+<%= link_to 'Edit', edit_expense_path(@expense) %> |
+<%= link_to 'Back', expenses_path %>

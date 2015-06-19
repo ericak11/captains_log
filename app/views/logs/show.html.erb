@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pdf:</strong>
+  <%= @log.pdf %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @log.date %>
+</p>
+
+<p>
+  <strong>Created by:</strong>
+  <%= @log.created_by %>
+</p>
+
+<%= link_to 'Edit', edit_log_path(@log) %> |
+<%= link_to 'Back', logs_path %>

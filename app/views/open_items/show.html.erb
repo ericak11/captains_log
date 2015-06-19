@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Task:</strong>
+  <%= @open_item.task %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @open_item.date %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @open_item.user_id %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @open_item.notes %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @open_item.completed %>
+</p>
+
+<%= link_to 'Edit', edit_open_item_path(@open_item) %> |
+<%= link_to 'Back', open_items_path %>

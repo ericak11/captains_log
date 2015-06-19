@@ -4,7 +4,8 @@ class CreateLogs < ActiveRecord::Migration
       t.string :pdf
       t.string :date
       t.string :created_by
-      t.timestamps
+
+      t.timestamps null: false
     end
   end
 end

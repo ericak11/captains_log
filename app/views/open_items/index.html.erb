@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Open Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Date</th>
+      <th>User</th>
+      <th>Notes</th>
+      <th>Completed</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @open_items.each do |open_item| %>
+      <tr>
+        <td><%= open_item.task %></td>
+        <td><%= open_item.date %></td>
+        <td><%= open_item.user_id %></td>
+        <td><%= open_item.notes %></td>
+        <td><%= open_item.completed %></td>
+        <td><%= link_to 'Show', open_item %></td>
+        <td><%= link_to 'Edit', edit_open_item_path(open_item) %></td>
+        <td><%= link_to 'Destroy', open_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Open item', new_open_item_path %>
