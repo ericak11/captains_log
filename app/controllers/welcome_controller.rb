@@ -1,8 +1,8 @@
 class WelcomeController < ApplicationController
   def index
-    if session[:user_id]
+    if current_user
       user = User.find_by(id: session[:user_id])
-      redirect_to(user_path(user))
+      redirect_to :dashboard
     else
       redirect_to(login_path)
     end

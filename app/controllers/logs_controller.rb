@@ -16,6 +16,8 @@ class LogsController < ApplicationController
   # GET /logs/new
   def new
     @log = Log.new
+    @crew = User.crew
+    @open_items = OpenItem.current_open_items
   end
 
   # GET /logs/1/edit
@@ -25,6 +27,7 @@ class LogsController < ApplicationController
   # POST /logs
   # POST /logs.json
   def create
+    binding.pry
     @log = Log.new(log_params)
 
     respond_to do |format|

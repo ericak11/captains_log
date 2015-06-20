@@ -16,6 +16,7 @@ class OpenItemsController < ApplicationController
   # GET /open_items/new
   def new
     @open_item = OpenItem.new
+    @crew = User.crew
   end
 
   # GET /open_items/1/edit

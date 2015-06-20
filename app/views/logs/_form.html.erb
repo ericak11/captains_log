@@ -10,19 +10,82 @@
       </ul>
     </div>
   <% end %>
+  <h3>Crew On Board</h3>
 
-  <div class="field">
-    <%= f.label :pdf %><br>
-    <%= f.text_field :pdf %>
-  </div>
-  <div class="field">
-    <%= f.label :date %><br>
-    <%= f.text_field :date %>
-  </div>
-  <div class="field">
-    <%= f.label :created_by %><br>
-    <%= f.text_field :created_by %>
-  </div>
+    <table class="table">
+    <tr>
+      <th>Job</th>
+      <th>Name</th>
+      <th>Working</th>
+      <th>Off</th>
+    </tr>
+    <% @crew.each do |crew| %>
+      <tr>
+        <td> <%= crew.job_title %></td>
+        <td><%= crew.name %>  </td>
+        <%= f.fields_for :status do |status| %>
+          <td><%= status.radio_button :"#{crew.id}", "working" %></td>
+          <td><%= status.radio_button :"#{crew.id}", "off" %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+
+  <h3>Open Items</h3>
+   <table class="table">
+    <tr>
+      <th>Task</th>
+      <th>Completion Date</th>
+      <th>Responsibility</th>
+      <th>Notes</th>
+      <th>Daily Notes</th>
+      <th>Completed?</th>
+    </tr>
+    <% @open_items.each do |open_item| %>
+      <tr>
+      <%= f.fields_for :open_items do |oi| %>
+        <td> <%= open_item.task %></td>
+        <td><%= open_item.date %>  </td>
+        <% if open_item.user_id.present? %>
+          <td><%= open_item.user.name %>  </td>
+        <% else %>
+          <td><%= oi.collection_select :user_id, @crew, :id, :name, include_blank: true  %></td>
+        <% end %>
+        <td><%= open_item.notes %>  </td>
+        <td>  <%= oi.text_field :notes %></td>
+        <td><%= oi.check_box :completed %></td>
+
+      <% end %>
+      </tr>
+    <% end %>
+  </table>
+  <h3>Expenses</h3>
+  <%= f.fields_for :expenses do |expense| %>
+
+    <div class="field">
+      <%= expense.label :type %><br>
+      <%= expense.text_field :type %>
+    </div>
+    <div class="field">
+      <%= expense.label :category %><br>
+      <%= expense.text_field :category %>
+    </div>
+    <div class="field">
+      <%= expense.label :check_number %><br>
+      <%= expense.number_field :check_number %>
+    </div>
+    <div class="field">
+      <%= expense.label :check_to %><br>
+      <%= expense.text_field :check_to %>
+    </div>
+    <div class="field">
+      <%= expense.label :notes %><br>
+      <%= expense.text_field :notes %>
+    </div>
+
+  <% end %>
+  <h3>Notes</h3>
+    <%= f.text_area :notes %>
   <div class="actions">
     <%= f.submit %>
   </div>

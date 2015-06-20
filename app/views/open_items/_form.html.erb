@@ -13,23 +13,19 @@
 
   <div class="field">
     <%= f.label :task %><br>
-    <%= f.text_field :task %>
+    <%= f.select :task , Expense::TYPES %>
   </div>
   <div class="field">
     <%= f.label :date %><br>
-    <%= f.text_field :date %>
+    <%= f.date_field :date %>
   </div>
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+    <%= f.label :assaigned_to %><br>
+    <%= f.collection_select :user_id, @crew, :id, :name, include_blank: true %>
   </div>
   <div class="field">
     <%= f.label :notes %><br>
     <%= f.text_field :notes %>
-  </div>
-  <div class="field">
-    <%= f.label :completed %><br>
-    <%= f.check_box :completed %>
   </div>
   <div class="actions">
     <%= f.submit %>
