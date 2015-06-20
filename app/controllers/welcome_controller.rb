@@ -7,4 +7,7 @@ class WelcomeController < ApplicationController
       redirect_to(login_path)
     end
   end
+  def dashboard
+    render 'users/dashboard'
+  end
 end

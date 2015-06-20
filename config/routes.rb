@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root :to => 'welcome#index'
   resources :user_sessions
   resources :users
-
+  get 'dashboard' => 'welcome#dashboard', :as => :dashboard
   get 'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
 

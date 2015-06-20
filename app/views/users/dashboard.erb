@@ -1,0 +1,8 @@
+<% if current_user.admin? %>
+  <button id="load_daily_logs">See Daily Logs</button>
+  <button id="expenses_index">See Expenses</button>
+  <button id="add_open_items">Add Open Items</button>
+<% elsif current_user.captain? %>
+  <button id="add_daily_logs">Create Daily Log</button>
+<% end %>
+  <button id="add_crew_member">Add a Crew Member</button>
