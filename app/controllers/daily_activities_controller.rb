@@ -1,6 +1,6 @@
 class DailyActivitiesController < ApplicationController
   before_action :set_daily_activity, only: [:show, :edit, :update, :destroy]
-
+  before_action :require_login
   # GET /daily_activities
   # GET /daily_activities.json
   def index

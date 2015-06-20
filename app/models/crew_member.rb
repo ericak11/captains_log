@@ -1,2 +1,0 @@
-class CrewMember < User
-end

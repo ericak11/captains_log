@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :require_login, :except => [:new, :create]
   # GET /users
   # GET /users.json
   def index
@@ -25,14 +25,13 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.add_role params[:user][:role]
 
     respond_to do |format|
       if @user.save
-        binding.pry
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
-        binding.pry
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -42,6 +41,10 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    if @user.role != params[:user][:role]
+      @user.remove_role @user.role
+      @user.add_role params[:user][:role]
+    end
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -71,6 +74,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :name, :type, :password_digest, :password, :job_title, :active)
+          params.require(:user).permit(:email, :password, :password_confirmation, :name, :role, :job_title, :active)
     end
 end

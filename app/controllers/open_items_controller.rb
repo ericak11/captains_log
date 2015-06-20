@@ -1,5 +1,6 @@
 class OpenItemsController < ApplicationController
   before_action :set_open_item, only: [:show, :edit, :update, :destroy]
+  before_action :require_login
 
   # GET /open_items
   # GET /open_items.json
