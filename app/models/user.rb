@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
+  has_many :logs
   validates :password,
     length: { minimum: 6 },
     presence: true,

@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20150620182737) do
   create_table "logs", force: :cascade do |t|
     t.string   "pdf"
     t.string   "date"
-    t.string   "created_by"
+    t.integer  "created_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "expense_id"
