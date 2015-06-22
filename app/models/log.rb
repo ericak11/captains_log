@@ -6,4 +6,5 @@ class Log < ActiveRecord::Base
   has_many :on_duties
   has_many :users, through: :on_duties
   accepts_nested_attributes_for :expenses
+
 end
