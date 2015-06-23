@@ -1,4 +1,4 @@
-<% binding.pry %>
+
 <%= form_for(expense) do |f| %>
   <% if expense.errors.any? %>
     <div id="error_explanation">
@@ -12,27 +12,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :type %><br>
+
+    <%= f.label :type %>
     <%= f.select :type, Expense::TYPES %>
-  </div>
-  <div class="field">
-    <%= f.label :category %><br>
+
+    <%= f.label :category %>
     <%= f.text_field :category %>
-  </div>
-  <div class="field">
-    <%= f.label :check_number %><br>
+
+    <%= f.label :check_number %>
     <%= f.number_field :check_number %>
-  </div>
-  <div class="field">
-    <%= f.label :check_to %><br>
+
+    <%= f.label :check_to %>
     <%= f.text_field :check_to %>
-  </div>
-  <div class="field">
-    <%= f.label :notes %><br>
+
+    <%= f.label :notes %>
     <%= f.text_field :notes %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+
 <% end %>

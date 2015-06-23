@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :on_duties
   has_many :logs, through: :on_duties
   has_many :open_items
+  has_many :daily_activities
+
 
   validates :password,
     length: { minimum: 6 },

@@ -15,10 +15,12 @@ class DailyActivitiesController < ApplicationController
   # GET /daily_activities/new
   def new
     @daily_activity = DailyActivity.new
+    @crew = User.crew
   end
 
   # GET /daily_activities/1/edit
   def edit
+    @crew = User.crew
   end
 
   # POST /daily_activities

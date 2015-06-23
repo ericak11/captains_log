@@ -18,6 +18,7 @@ class LogsController < ApplicationController
     @log = Log.new
     @crew = User.crew
     @open_items = OpenItem.current_open_items
+    @daily_activities = DailyActivity.all
   end
 
   # GET /logs/1/edit

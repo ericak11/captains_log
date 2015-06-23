@@ -60,8 +60,31 @@
     <% end %>
   </table>
   <h3>Expenses</h3>
-    <%= render :partial => '/expenses/form', :expense => @log.expenses.build %>
-  <h3>Notes</h3>
+    <%= render :partial => '/expenses/form',  :locals => {:expense => @log.expenses.build} %>
+    <button> add expense </button>
+  <h3>Daily Activities</h3>
+   <table class="table">
+    <tr>
+      <th>Task</th>
+      <th>Responsibility</th>
+      <th>Completed?</th>
+      <th>Notes</th>
+    </tr>
+    <% @daily_activities.each do |daily_activity| %>
+      <tr>
+      <% binding.pry %>
+      <%= f.fields_for :daily_activities do |da| %>
+        <td> <%= daily_activity.description %></td>
+        <td><%= daily_activity.user.name %>  </td>
+        <td><%= da.check_box :completed %></td>
+        <td>  <%= da.text_field :notes %></td>
+
+      <% end %>
+      </tr>
+    <% end %>
+  </table>
+
+  <h3>Daily Notes</h3>
     <%= f.text_area :notes %>
   <div class="actions">
     <%= f.submit %>
