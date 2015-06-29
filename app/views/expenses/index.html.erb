@@ -22,9 +22,9 @@
         <td><%= expense.check_number %></td>
         <td><%= expense.check_to %></td>
         <td><%= expense.notes %></td>
-        <td><%= link_to 'Show', expense %></td>
-        <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
-        <td><%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', expense.becomes(Expense) %></td>
+        <td><%= link_to 'Edit', edit_expense_path(expense.becomes(Expense)) %></td>
+        <td><%= link_to 'Destroy', expense.becomes(Expense), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

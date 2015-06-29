@@ -26,14 +26,14 @@ class ExpensesController < ApplicationController
   # POST /expenses.json
   def create
     @expense = Expense.new(expense_params)
-
+    @expense.becomes(Expense)
     respond_to do |format|
       if @expense.save
-        format.html { redirect_to @expense, notice: 'Expense was successfully created.' }
-        format.json { render :show, status: :created, location: @expense }
+        format.html { redirect_to  @expense.becomes(Expense), notice: 'Expense was successfully created.' }
+        format.json { render :show, status: :created, location: @expense.becomes(Expense) }
       else
         format.html { render :new }
-        format.json { render json: @expense.errors, status: :unprocessable_entity }
+        format.json { render json: @expense.becomes(Expense).errors, status: :unprocessable_entity }
       end
     end
   end
@@ -70,6 +70,6 @@ class ExpensesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def expense_params
-      params.require(:expense).permit(:type, :category, :check_number, :check_to, :notes)
+      params.require(:expense).permit(:type, :category, :check_number, :check_to, :notes, :amount)
     end
 end

@@ -28,9 +28,19 @@ class LogsController < ApplicationController
   # POST /logs
   # POST /logs.json
   def create
+    @log = Log.new
+    @log.date = Date.today
+    @log.created_by = current_user
+    @log.notes = params[:log][:notes]
+    @log.save
+    create_completed_tasks
+    create_in_progresses
+    create_on_duties
+    update_expenses
+    pdf = @log.create_pdf
     binding.pry
-    @log = Log.new(log_params)
-
+    @log.pdf = pdf
+    binding.pry
     respond_to do |format|
       if @log.save
         format.html { redirect_to @log, notice: 'Log was successfully created.' }
@@ -75,5 +85,45 @@ class LogsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def log_params
       params.require(:log).permit(:pdf, :date, :created_by)
+    end
+    def create_completed_tasks
+      daily_activities = params[:log][:daily_activities]
+      daily_activities.each do |activity|
+         CompletedTask.create({
+          daily_activity_id: activity[0],
+          log_id: @log.id,
+          completed: activity[1][:completed],
+          notes: activity[1][:notes]
+        })
+      end
+    end
+    def create_on_duties
+      on_duties = params[:log][:status]
+      on_duties.each do |on_duty|
+        OnDuty.create({
+          log_id: @log.id,
+          user_id: on_duty[0],
+          status: on_duty[1]
+        })
+      end
+    end
+    def create_in_progresses
+      in_progresses = params[:log][:open_items]
+      in_progresses.each do |in_progress|
+        InProgress.create({
+          log_id: @log.id,
+          open_item_id: in_progress[0],
+          notes: in_progress[1][:notes]
+          })
+        oi = OpenItem.find(in_progress[0])
+        oi.user_id = in_progress[1]["user_id"] if in_progress[1]["user_id"].present?
+        oi.completed = in_progress[1]["completed"] if in_progress[1]["completed"].present?
+        oi.save
+      end
+
+    end
+    def update_expenses
+      @expenses = Expense.unassaigned_expenses
+      @expenses.update_all(log_id: @log.id)
     end
 end

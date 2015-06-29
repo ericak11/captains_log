@@ -1,8 +1,8 @@
 
-<%= form_for(expense) do |f| %>
-  <% if expense.errors.any? %>
+<%= form_for(@expense) do |f| %>
+  <% if @expense.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(expense.errors.count, "error") %> prohibited this expense from being saved:</h2>
+      <h2><%= pluralize(@expense.errors.count, "error") %> prohibited this expense from being saved:</h2>
 
       <ul>
       <% @expense.errors.full_messages.each do |message| %>
@@ -12,10 +12,10 @@
     </div>
   <% end %>
 
-
+  <div class="field">
     <%= f.label :type %>
     <%= f.select :type, Expense::TYPES %>
-
+  </div>
     <%= f.label :category %>
     <%= f.text_field :category %>
 
@@ -28,5 +28,8 @@
     <%= f.label :notes %>
     <%= f.text_field :notes %>
 
+    <%= f.label :amount %>
+    <%= f.number_field :amount %>
 
+    <%= f.submit %>
 <% end %>

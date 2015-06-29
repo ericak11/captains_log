@@ -43,7 +43,7 @@
     </tr>
     <% @open_items.each do |open_item| %>
       <tr>
-      <%= f.fields_for :open_items do |oi| %>
+      <%= f.fields_for :"open_items[#{open_item.id}]" do |oi| %>
         <td> <%= open_item.task %></td>
         <td><%= open_item.date %>  </td>
         <% if open_item.user_id.present? %>
@@ -53,15 +53,14 @@
         <% end %>
         <td><%= open_item.notes %>  </td>
         <td>  <%= oi.text_field :notes %></td>
-        <td><%= oi.check_box :completed %></td>
+        <td><%= oi.check_box :completed, {}, true, false %></td>
 
       <% end %>
       </tr>
     <% end %>
   </table>
   <h3>Expenses</h3>
-    <%= render :partial => '/expenses/form',  :locals => {:expense => @log.expenses.build} %>
-    <button> add expense </button>
+
   <h3>Daily Activities</h3>
    <table class="table">
     <tr>
@@ -72,11 +71,10 @@
     </tr>
     <% @daily_activities.each do |daily_activity| %>
       <tr>
-      <% binding.pry %>
-      <%= f.fields_for :daily_activities do |da| %>
+      <%= f.fields_for :"daily_activities[#{daily_activity.id}]" do |da| %>
         <td> <%= daily_activity.description %></td>
         <td><%= daily_activity.user.name %>  </td>
-        <td><%= da.check_box :completed %></td>
+        <td><%= da.check_box :completed, {}, true, false %></td>
         <td>  <%= da.text_field :notes %></td>
 
       <% end %>

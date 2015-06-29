@@ -1,0 +1,5 @@
+class Credit < Expense
+
+
+end
+

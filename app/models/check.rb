@@ -1,0 +1,5 @@
+class Check < Expense
+
+
+end
+
