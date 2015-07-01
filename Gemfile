@@ -33,6 +33,8 @@ gem 'royce', '1.0.6'
 # gem 'unicorn'
 gem 'rails_12factor', group: :production
 
+gem 'paperclip'
+gem 'aws-sdk'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

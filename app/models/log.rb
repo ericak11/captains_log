@@ -8,6 +8,8 @@ class Log < ActiveRecord::Base
   accepts_nested_attributes_for :expenses
   has_many :completed_tasks
   has_many :daily_activities, through: :completed_tasks
+  has_attached_file :pdf
+  validates_attachment_content_type :pdf, :content_type => "application/pdf"
 
   def create_pdf
     log = self
@@ -63,7 +65,9 @@ class Log < ActiveRecord::Base
     pdf.move_down 15
     pdf.text "Notes", :size => 16
     pdf.text log.notes, :size => 12
-    pdf.render_file "#{log.date}_log.pdf"
+    pdf.render_file File.join(Rails.root, "app/pdfs", "x.pdf")
+    log.pdf = File.open("#{Rails.root}/app/pdfs/x.pdf")
+    log.save!
+    binding.pry
   end
-
 end
