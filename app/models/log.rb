@@ -65,8 +65,8 @@ class Log < ActiveRecord::Base
     pdf.move_down 15
     pdf.text "Notes", :size => 16
     pdf.text log.notes, :size => 12
-    pdf.render_file File.join(Rails.root, "pdfs", "x.pdf")
-    log.pdf = File.open("#{Rails.root}/pdfs/x.pdf")
+    pdf.render_file File.join(Rails.root, "x.pdf")
+    log.pdf = File.open("#{Rails.root}/x.pdf")
     log.save!
   end
 end
