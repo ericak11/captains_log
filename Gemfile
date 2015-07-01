@@ -34,7 +34,7 @@ gem 'royce', '1.0.6'
 gem 'rails_12factor', group: :production
 
 gem 'paperclip'
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
