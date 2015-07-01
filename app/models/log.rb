@@ -9,7 +9,7 @@ class Log < ActiveRecord::Base
   has_many :completed_tasks
   has_many :daily_activities, through: :completed_tasks
   has_attached_file :pdf
-  validates_attachment_content_type :pdf, :content_type => "application/pdf"
+  validates_attachment :pdf, content_type: { content_type: "application/pdf" }
 
   def create_pdf
     log = self
@@ -68,6 +68,5 @@ class Log < ActiveRecord::Base
     pdf.render_file File.join(Rails.root, "app/pdfs", "x.pdf")
     log.pdf = File.open("#{Rails.root}/app/pdfs/x.pdf")
     log.save!
-    binding.pry
   end
 end

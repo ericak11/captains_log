@@ -37,10 +37,7 @@ class LogsController < ApplicationController
     create_in_progresses
     create_on_duties
     update_expenses
-    pdf = @log.create_pdf
-    binding.pry
-    @log.pdf = pdf
-    binding.pry
+    @log.create_pdf
     respond_to do |format|
       if @log.save
         format.html { redirect_to @log, notice: 'Log was successfully created.' }
